@@ -1,0 +1,29 @@
+To enhance color recognition further using clustering algorithms like K-means, you can modify your get_dominant_color function to utilize K-means clustering instead of simply calculating the mean color.
+
+from sklearn.cluster import KMeans
+
+def get_dominant_color(image, mask, num_clusters=3):
+    # Convert the image to the RGB color space
+    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    
+    # Apply the mask to the image
+    masked_image = cv2.bitwise_and(image_rgb, image_rgb, mask=mask)
+    
+    # Reshape the image to be a list of pixels
+    pixels = masked_image.reshape((-1, 3))
+    
+    # Remove zero entries (background)
+    pixels = pixels[np.any(pixels != 0, axis=1)]
+    
+    # Apply K-means clustering to find dominant colors
+    kmeans = KMeans(n_clusters=num_clusters)
+    kmeans.fit(pixels)
+    
+    # Get the centroids of the clusters (representative colors)
+    dominant_colors = kmeans.cluster_centers_
+    
+    # Convert dominant colors to integers
+    dominant_colors = dominant_colors.astype(int)
+    
+    return dominant_colors
+
