@@ -1,0 +1,12 @@
+numpy
+kafka-python
+joblib
+scikit-learn
+opencv-python
+pandas
+matplotlib
+os
+sys
+json
+sqlite3
+
