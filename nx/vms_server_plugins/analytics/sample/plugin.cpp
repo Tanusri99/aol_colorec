@@ -22,7 +22,7 @@ Result<IEngine*> Plugin::doObtainEngine()
     auto engine = new Engine(pluginHomeDir);
 
     //Get the NX Camera ID
-    std::string nxCamId = "fb80b2f7-23d1-7f74-94a8-1aeec6de601b";
+    std::string nxCamId = "";
 
     // Start instance segmentation via Flask app
     CURL* curl;
